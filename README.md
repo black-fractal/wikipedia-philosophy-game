@@ -8,9 +8,6 @@
 ![downloads](https://img.shields.io/github/downloads/black-fractal/wikipedia-philosophy-game/total?style=plastic)
 ![license](https://img.shields.io/github/license/black-fractal/wikipedia-philosophy-game?style=plastic)
 
-![watch](https://img.shields.io/github/watchers/black-fractal/wikipedia-philosophy-game?label=watch&style=social)
-[![twitter](https://img.shields.io/twitter/follow/V4HlD?color=yellow&label=twitter%20follow&style=social)](https://twitter.com/V4HlD)
-
 A `python` script that allows you to play **`Wikipedia's Getting to Philosophy`** game.
 
 ## Brief summary
@@ -18,3 +15,6 @@ A `python` script that allows you to play **`Wikipedia's Getting to Philosophy`*
 Clicking on the first non-parenthesized, non-italicized link, in the main text of a Wikipedia article, and then repeating the process for subsequent articles, usually eventually gets one to the Philosophy article. (See this [Wikipedia essay](https://en.wikipedia.org/wiki/Wikipedia:Getting_to_Philosophy) for more information)
 
 The Philosophy Game, written in `Python`, lets you do the clicking programmatically.
+
+![watch](https://img.shields.io/github/watchers/black-fractal/wikipedia-philosophy-game?label=watch&style=social)
+[![twitter](https://img.shields.io/twitter/follow/V4HlD?color=yellow&label=twitter%20follow&style=social)](https://twitter.com/V4HlD)
