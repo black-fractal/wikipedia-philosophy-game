@@ -6,7 +6,6 @@ https://github.com/black-fractal/wikipedia-philosophy-game
 Vahid Khodabakhshi,
 vkhodabakhshi@ce.sharif.edu
 January 8, 2021
-
 '''''''''''''''''''''''''''''''''
 
 import json

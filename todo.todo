@@ -1,0 +1,17 @@
+- using anytree! https://pypi.org/project/anytree/
+- making requirements
+- making python package
+- Algorithm:
+    Consider a data structure named 'tracker' as the following format (a list of lists):
+    	[ 
+    	     [Science, Uncertainety, ...],
+    	     [X, Y, Z, T, Y, ...],
+    	     [...],
+    	     ...
+    	]
+    
+    fl = fetch fisrt link
+    if fl in tracker:
+    	replace the lingest track 
+    0
+    	add to approperiate place in 
