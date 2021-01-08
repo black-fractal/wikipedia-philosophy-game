@@ -26,7 +26,7 @@ The Philosophy Game, written in `Python`, lets you do the clicking programmatica
 4. Enjoy the program:+1:
 
 ## How to run
-- To run with the normal crawler:\
+>- To run with the normal crawler:\
 `python3 philosophy-crawler.py`
 - To run with the fast crawler:\
 `python3 philosophy-fast-crawler.py`
