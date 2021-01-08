@@ -27,11 +27,11 @@ The Philosophy Game, written in `Python`, lets you do the clicking programmatica
 
 ## How to run
 - To run with the normal crawler:\
-'''
+```
 `python3 philosophy-crawler.py`
 - To run with the fast crawler:\
 `python3 philosophy-fast-crawler.py`
-'''
+```
 
 ![watch](https://img.shields.io/github/watchers/black-fractal/wikipedia-philosophy-game?label=watch&style=social)
 [![twitter](https://img.shields.io/twitter/follow/V4HlD?color=yellow&label=twitter%20follow&style=social)](https://twitter.com/V4HlD)
