@@ -1,5 +1,5 @@
 '''''''''''''''''''''''''''''''''
-Getting to Philosophy! Faster!
+Getting to Philosophy Faster!
 https://github.com/black-fractal/wikipedia-philosophy-game
 
 @black-fractal
