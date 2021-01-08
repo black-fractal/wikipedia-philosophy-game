@@ -16,5 +16,20 @@ Clicking on the first non-parenthesized, non-italicized link, in the main text o
 
 The Philosophy Game, written in `Python`, lets you do the clicking programmatically.
 
+## Installation Steps
+1. Clone 'wikipedia-philosophy-game' from git:
+`git clone https://github.com/black-fractal/wikipedia-philosophy-game.git`
+2. Change the directory:
+`cd wikipedia-philosophy-game-main`
+3. Install the requirements:
+`pip3 install -r requirements.txt`
+4. Enjoy the program!
+
+## How to run
+- To run with the normal crawler:
+`python3 philosophy-crawler.py`
+- To run with the fast crawler:
+`python3 philosophy-fast-crawler.py`
+
 ![watch](https://img.shields.io/github/watchers/black-fractal/wikipedia-philosophy-game?label=watch&style=social)
 [![twitter](https://img.shields.io/twitter/follow/V4HlD?color=yellow&label=twitter%20follow&style=social)](https://twitter.com/V4HlD)
