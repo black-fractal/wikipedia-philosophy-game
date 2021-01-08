@@ -10,11 +10,13 @@ January 8, 2021
 
 import json
 import logging
-import requests
 from time import sleep
 from datetime import datetime
 
+import requests
 from bs4 import BeautifulSoup
+from anytree import Node, RenderTree
+from anytree.exporter import DotExporter
 
 VERBOSE = True
 CRAWL_STATE = 'NO-STATE'
