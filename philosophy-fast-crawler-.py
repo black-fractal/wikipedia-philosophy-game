@@ -1,5 +1,5 @@
-'''''''''''''''''''''''''''''
-Getting to Philosophy!
+'''''''''''''''''''''''''''''''''
+Getting to Philosophy! Faster!
 https://github.com/black-fractal/wikipedia-philosophy-game
 
 @black-fractal
@@ -7,7 +7,7 @@ Vahid Khodabakhshi,
 vkhodabakhshi@ce.sharif.edu
 January 8, 2021
 
-'''''''''''''''''''''''''''''
+'''''''''''''''''''''''''''''''''
 
 import json
 import logging

@@ -10,7 +10,6 @@ colorama==0.4.4
 cymem==2.0.5
 decorator==4.4.2
 distlib==0.3.1
-en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz
 filelock==3.0.12
 idna==2.10
 ipykernel @ file:///C:/ci/ipykernel_1607454116140/work/dist/ipykernel-5.3.4-py3-none-any.whl
