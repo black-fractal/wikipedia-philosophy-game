@@ -1,11 +1,8 @@
 # Wikipedia Philosophy Game!
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=plastic&logo=python)](https://www.python.org/)
-
-![license](https://img.shields.io/github/license/black-fractal/wikipedia-philosophy-game?style=plastic)
-
 ![code-size](https://img.shields.io/github/languages/code-size/black-fractal/wikipedia-philosophy-game?style=plastic)
-
 ![total-lines](https://img.shields.io/tokei/lines/github/black-fractal/wikipedia-philosophy-game?style=plastic&color=green)
+![license](https://img.shields.io/github/license/black-fractal/wikipedia-philosophy-game?style=plastic)
 
 A `python` script that allows you to play **`Wikipedia's Getting to Philosophy`** game.
 
