@@ -1,5 +1,5 @@
 # Wikipedia Philosophy Game!
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=plastic&logo=python)](https://www.python.org/)
+[![made-with-python](https://img.shields.io/badge/made%20with-Python%20%3E3-1f425f.svg?color=blueviolet&style=plastic&logo=python)](https://www.python.org/)
 ![code-size](https://img.shields.io/github/languages/code-size/black-fractal/wikipedia-philosophy-game?style=plastic)
 ![total-lines](https://img.shields.io/tokei/lines/github/black-fractal/wikipedia-philosophy-game?style=plastic&color=green)
 ![downloads](https://img.shields.io/github/downloads/black-fractal/wikipedia-philosophy-game/total?style=plastic)
