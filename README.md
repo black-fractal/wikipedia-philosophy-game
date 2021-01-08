@@ -25,6 +25,10 @@ The Philosophy Game, written in `Python`, lets you do the clicking programmatica
 `pip3 install -r requirements.txt`
 4. Enjoy the program:+1:
 
+## Update to latest version:
+Use following command to update to latest version:
+`git pull`
+
 ## Usage
 - To run with the normal crawler:\
 `python3 philosophy-crawler.py`
