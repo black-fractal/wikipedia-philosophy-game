@@ -1,6 +1,9 @@
 # Wikipedia Philosophy Game!
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
-A [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) script that allows you to play **`Wikipedia's Getting to Philosophy`** game.
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![](https://img.shields.io/github/license/ResidentMario/missingno.svg)](https://github.com/ResidentMario/missingno/blob/master/LICENSE.md)
+
+A `python` script that allows you to play **`Wikipedia's Getting to Philosophy`** game.
 
 ## Brief summary
 ![Logo!](https://repository-images.githubusercontent.com/327747829/309bb600-51df-11eb-93e9-e75ee646b92a)
