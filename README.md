@@ -25,13 +25,15 @@ The Philosophy Game, written in `Python`, lets you do the clicking programmatica
 `pip3 install -r requirements.txt`
 4. Enjoy the program:+1:
 
-## How to run
+## Usage
 - To run with the normal crawler:\
-```
 `python3 philosophy-crawler.py`
 - To run with the fast crawler:\
 `python3 philosophy-fast-crawler.py`
-```
+
+## License
+This tools is licensed under the GPL-3.0 License. take a look at the [LICENSE](https://github.com/black-fractal/wikipedia-philosophy-game/blob/main/LICENSE) for information about it.
+
 
 ![watch](https://img.shields.io/github/watchers/black-fractal/wikipedia-philosophy-game?label=watch&style=social)
 [![twitter](https://img.shields.io/twitter/follow/V4HlD?color=yellow&label=twitter%20follow&style=social)](https://twitter.com/V4HlD)
