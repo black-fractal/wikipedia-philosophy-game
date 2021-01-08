@@ -23,7 +23,7 @@ The Philosophy Game, written in `Python`, lets you do the clicking programmatica
 `cd wikipedia-philosophy-game-main`
 3. Install the requirements:\
 `pip3 install -r requirements.txt`
-4. Enjoy the program!\
+4. Enjoy the program! :+1:\
 
 ## How to run
 - To run with the normal crawler:\
