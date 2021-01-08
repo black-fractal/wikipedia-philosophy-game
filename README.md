@@ -1,6 +1,6 @@
 # Wikipedia Philosophy Game!
 [![made-with-python](https://img.shields.io/badge/made%20with-Python%20%3E3-1f425f.svg?color=blueviolet&style=plastic&logo=python)](https://www.python.org/)
-[![ide](https://img.shields.io/static/v1?label=IDE&message=VSCode&color=yellowgreen?style=plastic&logo=visual-studio-code)](https://code.visualstudio.com/)
+[![ide](https://img.shields.io/badge/IDE-VSCode-yellowgreen?style=plastic&logo=visual-studio-code)](https://code.visualstudio.com/)
 ![code-size](https://img.shields.io/github/languages/code-size/black-fractal/wikipedia-philosophy-game?style=plastic)
 ![total-lines](https://img.shields.io/tokei/lines/github/black-fractal/wikipedia-philosophy-game?style=plastic&color=green)
 ![commit-activity](https://img.shields.io/github/commit-activity/m/black-fractal/wikipedia-philosophy-game?color=brightgreen&style=plastic)
