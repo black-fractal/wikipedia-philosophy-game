@@ -11,10 +11,10 @@ January 2, 2021
 
 import json
 import logging
-import requests
 from time import sleep
 from datetime import datetime
 
+import requests
 from bs4 import BeautifulSoup
 
 VERBOSE = True
