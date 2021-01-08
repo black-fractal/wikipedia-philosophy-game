@@ -1,5 +1,5 @@
 # Wikipedia Philosophy Game!
-A `Python` script that allows you to play Wikipedia's "Getting to Philosophy" game.
+A `Python` script that allows you to play Wikipedia's **Getting to Philosophy** game.
 
 ## Brief summary
 ![Logo!](https://repository-images.githubusercontent.com/327747829/309bb600-51df-11eb-93e9-e75ee646b92a)
