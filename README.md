@@ -1,7 +1,7 @@
 # Wikipedia Philosophy Game!
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=plastic&logo=appveyor)](https://www.python.org/)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=plastic&logo=apppython)](https://www.python.org/)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=plastic&logo=python)](https://www.python.org/)
 
 A `python` script that allows you to play **`Wikipedia's Getting to Philosophy`** game.
 
