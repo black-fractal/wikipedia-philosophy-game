@@ -1,0 +1,13 @@
+{
+    "search-history": {
+        "David Agir": "https://en.wikipedia.org/wiki/Special:Random",
+        "house stager": "https://en.wikipedia.org/wiki/Home_staging",
+        "real estate": "https://en.wikipedia.org/wiki/Real_estate",
+        "natural resources": "https://en.wikipedia.org/wiki/Natural_resource",
+        "resources": "https://en.wikipedia.org/wiki/Resource",
+        "renewable": "https://en.wikipedia.org/wiki/Renewable_resource",
+        "natural resource": "https://en.wikipedia.org/wiki/Natural_resource"
+    },
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "crawl-final-state": "A loop was appeard! the article [natural resource] is visited again!"
+}

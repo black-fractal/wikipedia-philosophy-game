@@ -1,0 +1,16 @@
+{
+    "search-history": {
+        "Odetta at Carnegie Hall": "https://en.wikipedia.org/wiki/Special:Random",
+        "United States Representative": "https://en.wikipedia.org/wiki/United_States_House_of_Representatives",
+        "lower house": "https://en.wikipedia.org/wiki/Lower_house",
+        "chambers": "https://en.wikipedia.org/wiki/Debate_chamber",
+        "debate": "https://en.wikipedia.org/wiki/Debate",
+        "arguments": "https://en.wikipedia.org/wiki/Argument",
+        "logic": "https://en.wikipedia.org/wiki/Logic",
+        "rules of inference": "https://en.wikipedia.org/wiki/Rule_of_inference",
+        "logical form": "https://en.wikipedia.org/wiki/Logical_form",
+        "philosophy": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "crawl-final-state": "The target artice [Philosophy] is visited after 10 articles!"
+}

@@ -1,0 +1,15 @@
+{
+    "search-history": {
+        "Felicia Barton": "https://en.wikipedia.org/wiki/Special:Random",
+        "Hokusai": "https://en.wikipedia.org/wiki/Hokusai",
+        "ukiyo-e": "https://en.wikipedia.org/wiki/Ukiyo-e",
+        "woodblock prints": "https://en.wikipedia.org/wiki/Woodblock_printing",
+        "printing": "https://en.wikipedia.org/wiki/Printing",
+        "images": "https://en.wikipedia.org/wiki/Printmaking",
+        "artworks": "https://en.wikipedia.org/wiki/Work_of_art",
+        "aesthetic": "https://en.wikipedia.org/wiki/Aesthetics",
+        "philosophy": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "crawl-final-state": "The target artice [Philosophy] is visited after 9 articles!"
+}

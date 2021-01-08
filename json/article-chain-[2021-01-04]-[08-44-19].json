@@ -1,0 +1,15 @@
+{
+    "search-history": {
+        "Ostravar Brewery": "https://en.wikipedia.org/wiki/Special:Random",
+        "Southern Football League": "https://en.wikipedia.org/wiki/Southern_Football_League_(Scotland)",
+        "football": "https://en.wikipedia.org/wiki/Football_(soccer)",
+        "team sport": "https://en.wikipedia.org/wiki/Team_sport",
+        "sport": "https://en.wikipedia.org/wiki/Sport",
+        "competitive": "https://en.wikipedia.org/wiki/Competition",
+        "goal": "https://en.wikipedia.org/wiki/Goal",
+        "idea": "https://en.wikipedia.org/wiki/Idea",
+        "philosophy": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "crawl-final-state": "The target artice [Philosophy] is visited after 9 articles!"
+}

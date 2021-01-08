@@ -1,0 +1,11 @@
+{
+    "search-history": {
+        "SABCA S.2": "https://en.wikipedia.org/wiki/Special:Random",
+        "John Singer Sargent": "https://en.wikipedia.org/wiki/John_Singer_Sargent",
+        "expatriate": "https://en.wikipedia.org/wiki/Expatriate",
+        "residing": "https://en.wikipedia.org/wiki/Residency_(domicile)",
+        "resident": "https://en.wikipedia.org/wiki/Residency_(domicile)"
+    },
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "crawl-final-state": "A loop was appeard! the article [resident] is visited again!"
+}

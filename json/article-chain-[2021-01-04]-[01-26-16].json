@@ -1,0 +1,10 @@
+{
+    "search-history": {
+        "George Karrys": "https://en.wikipedia.org/wiki/Special:Random",
+        "Gospel of Luke": "https://en.wikipedia.org/wiki/Gospel_of_Luke",
+        "birth": "https://en.wikipedia.org/wiki/Nativity_of_Jesus",
+        "Luke": "https://en.wikipedia.org/wiki/Gospel_of_Luke"
+    },
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "crawl-final-state": "A loop was appeard! the article [Luke] is visited again!"
+}
