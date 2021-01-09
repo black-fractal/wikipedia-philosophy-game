@@ -32,7 +32,7 @@ Use following command to update to latest version:\
 ## Usage
 - To run with the normal crawler:\
 `python3 philosophy-crawler.py`\
-[!output-of-philosophy-crawler]()
+[!output-of-philosophy-crawler](https://github.com/black-fractal/wikipedia-philosophy-game/blob/main/img/output-of-philosophy-crawler.gif)
 - To run analyzer for the normal crawler:\
 `python3 json-analysis.py`
 - To run with the fast crawler:\
