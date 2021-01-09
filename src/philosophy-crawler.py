@@ -1,4 +1,4 @@
-'''''''''''''''''''''''''''''
+'''''''''''''''''''''''''''''''''
 Getting to Philosophy!
 https://github.com/black-fractal/wikipedia-philosophy-game
 
@@ -8,7 +8,7 @@ vkhodabakhshi@ce.sharif.edu
 Initiated Date: January 2, 2021
 Last modified date: January 9, 2021
 
-'''''''''''''''''''''''''''''
+'''''''''''''''''''''''''''''''''
 
 import json
 import logging
@@ -147,13 +147,13 @@ def strip_brackets( text ):
     return bytes( result, 'utf-8' ) # cast into the bytes format which is prepraed for BeautifulSoup method
 
 '''-------------------------------------------------
-The function set the initial config for logging
+The function set the initial config for logging.
 -------------------------------------------------'''
 def set_log_config():
     logging.basicConfig( format='\033[95m[%(asctime)s] \033[93m%(message)s\033[0m', datefmt='%Y-%m-%d %H:%M:%S', level=logging.INFO )
 
 '''-----------------------------------------------------------
-The function print log if global variable VERBOSE is True
+The function print log if global variable VERBOSE is True.
 -----------------------------------------------------------'''
 def log( msg ):
     if VERBOSE:
@@ -177,7 +177,7 @@ def make_file_name( extension ):
     return '..\\json\\article-chain-{}.{}'.format( datetime.today().strftime('[%Y-%m-%d]-[%H-%M-%S]'), extension )
 
 '''----------------------------------------------------
-The function returns a json dump
+The function returns a json dump.
 ----------------------------------------------------'''
 def make_json( article_chain, target_link ):
     out = dict()

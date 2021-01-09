@@ -1,7 +1,25 @@
+'''''''''''''''''''''''''''''''''
+Getting to Philosophy!
+https://github.com/black-fractal/wikipedia-philosophy-game
+
+@black-fractal
+Vahid Khodabakhshi,
+vkhodabakhshi@ce.sharif.edu
+Initiated Date: January 2, 2021
+Last modified date: January 9, 2021
+TODO: it's incomplete!
+
+'''''''''''''''''''''''''''''''''
+
 import glob, os
 import json
 from time import sleep
 
+'''----------------------------------
+The function read all JSON files and
+store data in results data structure
+using analysis function.
+----------------------------------'''
 def read_files( path, results ):
     os.chdir( path )
     total = len( glob.glob( '*.json' ) )
@@ -13,6 +31,11 @@ def read_files( path, results ):
             data = json.load( handler )
             analysis( data, results )
 
+'''----------------------------------
+The function analyse raw data which
+are fetched from all JSON files and
+fills out results data structure.
+----------------------------------'''
 def analysis( data, results ):
     
     # filling out the number of each states (found, looped, exceed-threshold)
@@ -27,7 +50,10 @@ def analysis( data, results ):
         results['found'] += 1
     
     results['search-history'] += list( data['search-history'].keys() ) # get all search history including loops, unsuccessfull and successfull crawls!
-    
+
+'''--------------
+Main function.
+--------------'''
 def main():
     
     results = { 'found':0, 'looped':0, 'exceed-threshold':0, 'looped-links':[], 'search-history':[], 'distance-to-ph':{} }
