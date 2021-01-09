@@ -5,7 +5,8 @@ https://github.com/black-fractal/wikipedia-philosophy-game
 @black-fractal
 Vahid Khodabakhshi,
 vkhodabakhshi@ce.sharif.edu
-January 2, 2021
+Initiated Date: January 2, 2021
+Last modified date: January 9, 2021
 
 '''''''''''''''''''''''''''''
 
