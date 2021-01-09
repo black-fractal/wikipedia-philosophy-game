@@ -166,13 +166,14 @@ in addition to the final state of crawling.
 def write_to_json_file( out_file, json_data ):
     with open( out_file, 'a', encoding='utf-8' ) as handler:
         handler.writelines( json_data )
+    log( 'The output file [{}] has been created successfully!'.format( out_file ) )
 
 '''----------------------------------------------------
 The function returns a string contain date and time
 example: article-chain-[2021-01-03]-[21-50-45].json.
 ----------------------------------------------------'''
 def make_file_name( extension ):
-    return '.\\json\\article-chain-{}.{}'.format( datetime.today().strftime('[%Y-%m-%d]-[%H-%M-%S]'), extension )
+    return '..\\json\\article-chain-{}.{}'.format( datetime.today().strftime('[%Y-%m-%d]-[%H-%M-%S]'), extension )
 
 '''----------------------------------------------------
 The function returns a json dump
