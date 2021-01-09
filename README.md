@@ -31,7 +31,7 @@ Use following command to update to latest version:\
 
 ## Usage
 - To run with the normal crawler:\
-`python3 philosophy-crawler.py`
+`python3 philosophy-crawler.py`\
 [!output-of-philosophy-crawler]()
 - To run analyzer for the normal crawler:\
 `python3 json-analysis.py`
