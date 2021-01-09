@@ -43,6 +43,10 @@ Use following command to update to latest version:\
 `cd src`\
 `python3 json-analysis.py`
 
+- To run with the fast crawler:\
+`cd src`\
+`python3 philosophy-fast-crawler.py`
+
 ## License
 This tools is licensed under the GPL-3.0 License. take a look at the [LICENSE](https://github.com/black-fractal/wikipedia-philosophy-game/blob/main/LICENSE) for information about it.
 
