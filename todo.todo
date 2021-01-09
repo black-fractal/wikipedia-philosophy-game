@@ -1,13 +1,4 @@
-- using anytree! https://pypi.org/project/anytree/
-- making requirements
-- making python package
-- Algorithm:
-    Consider a data structure named 'tracker' as the following format (a list of lists):
-    	[ 
-    	     [Science, Uncertainety, ...],
-    	     [X, Y, Z, T, Y, ...],
-    	     [...],
-    	     ...
-    	]
-    
-making tree with root 'philosophy'
+- Making requirements @done
+- Add fast crawler
+- Making python package
+- making tree with root 'philosophy'
