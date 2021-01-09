@@ -35,7 +35,7 @@ Use following command to update to latest version:\
 ## Usage
 - To run with the normal crawler:\
 `python3 philosophy-crawler.py`\
-![output-of-philosophy-crawler](https://github.com/black-fractal/wikipedia-philosophy-game/blob/main/img/output-of-philosophy-crawler.gif)
+![output-of-philosophy-crawler](https://github.com/black-fractal/wikipedia-philosophy-game/blob/main/img/output-of-philosophy-crawler.gif)\
 *Sample output*
 
 - To run analyzer for the normal crawler:\
