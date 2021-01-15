@@ -6,7 +6,7 @@ https://github.com/black-fractal/wikipedia-philosophy-game
 Vahid Khodabakhshi,
 vkhodabakhshi@ce.sharif.edu
 Initiated Date: January 2, 2021
-Last modified date: January 9, 2021
+Last modified date: January 15, 2021
 
 '''''''''''''''''''''''''''''''''
 
@@ -17,30 +17,33 @@ from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
-from anytree import Node, RenderTree
-from anytree.exporter import DotExporter
+from urllib.parse import urljoin
+# from anytree import Node, RenderTree
+# from anytree.exporter import DotExporter
 
-VERBOSE = True
-CRAWL_STATE = 'NO-STATE'
+VERBOSE         = True          # for logging
+CRAWL_STATE     = 'NO-STATE'    # crawl final state
 
 '''---------------------------------------------------------
 The function traverses Wikipedia links and stores the path
 leading to the target from the initial link in the form of
 a list of tuples named article_chain.
 ---------------------------------------------------------'''
-def traverse_link( link, target, threshold ):
+def traverse_link( link, target, threshold = 40, sleep_time = 1 ):
 
-    article_chain = list( tuple() )                     # Create a list of tuples data structure to maintain visited links
-    article_chain.append( (fetch_title(link), link) )   # Add the initial (title, link) into the article_chain data struture
+    article_chain = list( tuple() )                         # Create a `list of tuples` data structure to maintain visited links
+    
     log( '*** Crawling is starting..' )
-    log( '{:30s}-->\t\t{:50s}'.format( fetch_title(link), link ) )
+    title, link = fetch_title_and_link( link )              # Fetching the title and (redirected) link using the given link
+    article_chain.append( (title, link) )                   # Add the initial (title, link) into the article_chain data struture
+    log( '{:30s}-->\t\t{:50s}'.format( title, link ) )
     
     while continue_crawl( article_chain, target, threshold ):
 
-        title, link = fetch_first_link( link )          # Fetching the first (title, link) from each article page
-        log( '{:30s}-->\t\t{:50s}'.format( fetch_title(link), link ) )
-        sleep( 1 )                                      # Pause for a second for avoiding flood Wikipedia with requests.
-        article_chain.append( (title, link) )           # Add the new link and it's title into article_chain
+        title, link = fetch_title_and_link( fetch_first_link( link ) )  # Fetching the first (title, link) from each article page
+        article_chain.append( (title, link) )               # Add the new link and it's title into article_chain
+        log( '{:30s}-->\t\t{:50s}'.format( title, link ) )
+        sleep( sleep_time )                                 # Pause for some moment for avoiding flood Wikipedia with requests.
         
     log( '*** Crawling is finished!' )
     return article_chain
@@ -77,10 +80,12 @@ def continue_crawl( article_chain, target, threshold ):
 '''----------------------------------------------------------------------
 The function returns the title of an article based on the input link.
 ----------------------------------------------------------------------'''
-def fetch_title( link ):
+def fetch_title_and_link( link ):
+    link = requests.head( link, allow_redirects=True ).url
     res = requests.get( link )
     soup = BeautifulSoup( res.content, 'html.parser' )
-    return soup.find( 'h1' ).text
+    title = soup.find( 'h1' ).text.title()
+    return title, link
 
 '''----------------------------------------------------------------
 The function fetches the first link on the page of the article
@@ -99,14 +104,14 @@ def fetch_first_link( link ):
         for j in i.find_all( 'a', recursive=True ):
             if not j.find_parent('span'):
                 if( is_correct_link( j.get( 'href' ) ) ):
-                    return j.text, base_url + j.get( 'href' )
+                    return urljoin(base_url, j.get('href') )
 
     # if a page with format [x may refer to:] as apeard:
     for i in soup.find_all( 'a', recursive=True ):
         if not i.find_parent('div', attrs={'class' : 'hatnote navigation-not-searchable'} ):
             if i.get( 'href' ):
                 if( is_correct_link( i.get( 'href' ) ) ):
-                    return i.text, base_url + i.get( 'href' )
+                    return urljoin(base_url, i.get('href') )
 
 '''-------------------------------------------------------------------
 The function returns True if the input link does not contain ':' which
@@ -169,6 +174,7 @@ in addition to the final state of crawling.
 def write_to_json_file( out_file, json_data ):
     with open( out_file, 'a', encoding='utf-8' ) as handler:
         handler.writelines( json_data )
+    log( 'The output file [{}] has been created successfully!'.format( out_file ) )
 
 '''----------------------------------------------------
 The function returns a string contain date and time
@@ -191,11 +197,13 @@ def make_json( article_chain, target_link ):
 Main function.
 --------------'''
 def main():
-    set_log_config()
-    random_article_url = 'https://en.wikipedia.org/wiki/Special:Random'
-    target_link = 'https://en.wikipedia.org/wiki/Philosophy'
+    random_article_url  =   'https://en.wikipedia.org/wiki/Special:Random'
+    target_link         =   'https://en.wikipedia.org/wiki/Philosophy'
+    threshold           =    100       # maximum crawling
+    sleep_time          =    0.0       # second
     
-    article_chain = traverse_link( random_article_url, target_link, 100 )
+    set_log_config()
+    article_chain = traverse_link( random_article_url, target_link, threshold, sleep_time )
     write_to_json_file( make_file_name('json'), make_json(article_chain, target_link) )
 
 if __name__ == "__main__":
