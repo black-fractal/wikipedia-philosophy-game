@@ -1,7 +1,5 @@
 - Making requirements @done
 - After addressing bug (fetching the correct title of article) a performance bug is appeared because of twice fetching an article!
-- Making python package
-- making tree with root 'philosophy' using anytree! https://pypi.org/project/anytree/
 - Add fast crawler
 - Algorithm:
     Consider a data structure named 'tracker' as the following format (a list of lists):
@@ -11,3 +9,5 @@
     	     [...],
     	     ...
     	]
+- [incomplete!] Making tree with root 'philosophy' using anytree! https://pypi.org/project/anytree/
+- Making python package
