@@ -1,4 +1,5 @@
 - Making requirements @done
+- After addressing bug (fetching the correct title of article) a performance bug is appeared because of twice fetching an article!
 - Making python package
 - making tree with root 'philosophy' using anytree! https://pypi.org/project/anytree/
 - Add fast crawler
