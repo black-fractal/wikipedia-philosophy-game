@@ -362,9 +362,7 @@ Main function.
 --------------'''
 def main():
     
-    # random_article_url  =   'https://en.wikipedia.org/wiki/Special:Random'
-    # random_article_url  =   'https://en.wikipedia.org/wiki/Lebanon'
-    random_article_url  =   'https://en.wikipedia.org/wiki/The_Search_for_the_Snow_Leopard'
+    random_article_url  =   'https://en.wikipedia.org/wiki/Special:Random'
     target_link         =   'https://en.wikipedia.org/wiki/Philosophy'
     threshold           =    100       # maximum crawling
     sleep_time          =    0.0       # second
