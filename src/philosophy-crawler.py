@@ -208,7 +208,7 @@ def main():
     set_log_config()
     article_chain = traverse_link( random_article_url, target_link, threshold, sleep_time )
     out_file_path = make_file_path('json')
-    out_json = make_json(article_chain, target_link )
+    out_json = make_json( article_chain, target_link )
     write_to_json_file( out_file_path, out_json )
 
 if __name__ == "__main__":
