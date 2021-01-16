@@ -223,7 +223,7 @@ def make_json( article_chain, target_link ):
 Main function.
 --------------'''
 def main():
-    random_article_url  =   'https://en.wikipedia.org/wiki/Montagu%27s_harrier'
+    random_article_url  =   'https://en.wikipedia.org/wiki/Special:Random'
     target_link         =   'https://en.wikipedia.org/wiki/Philosophy'
     threshold           =    100       # maximum crawling
     sleep_time          =    0.0       # second
