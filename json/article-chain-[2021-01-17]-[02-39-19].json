@@ -1,0 +1,19 @@
+{
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "search-history": {
+        "2011 Skate America": "https://en.wikipedia.org/wiki/2011_Skate_America",
+        "Skate America": "https://en.wikipedia.org/wiki/Skate_America",
+        "Figure Skating Competition": "https://en.wikipedia.org/wiki/Figure_skating_competition",
+        "Sport": "https://en.wikipedia.org/wiki/Sports",
+        "Competition": "https://en.wikipedia.org/wiki/Competition",
+        "Goal": "https://en.wikipedia.org/wiki/Goal",
+        "Idea": "https://en.wikipedia.org/wiki/Idea",
+        "Philosophy": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    "repetitive-title-link": {},
+    "chain-length": 8,
+    "num_of_new_links": 5,
+    "num_of_repetitive_links": 3,
+    "duration": 8.95853042602539,
+    "crawl-final-state": "The target article [Philosophy] is visited after 8 articles!"
+}

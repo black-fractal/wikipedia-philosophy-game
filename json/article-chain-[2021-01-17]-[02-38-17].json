@@ -1,0 +1,19 @@
+{
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "search-history": {
+        "Alfie Stanley": "https://en.wikipedia.org/wiki/Alfie_Stanley",
+        "Association Football": "https://en.wikipedia.org/wiki/Association_football",
+        "Team Sport": "https://en.wikipedia.org/wiki/Team_sport",
+        "Sport": "https://en.wikipedia.org/wiki/Sport",
+        "Competition": "https://en.wikipedia.org/wiki/Competition",
+        "Goal": "https://en.wikipedia.org/wiki/Goal",
+        "Idea": "https://en.wikipedia.org/wiki/Idea",
+        "Philosophy": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    "repetitive-title-link": {},
+    "chain-length": 8,
+    "crawl-final-state": "The target article [Philosophy] is visited after 8 articles!",
+    "duration": 6.706887245178223,
+    "num_of_new_links": 4,
+    "num_of_repetitive_links": 4
+}

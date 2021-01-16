@@ -1,8 +1,9 @@
 {
     "target-link": "https://en.wikipedia.org/wiki/Philosophy",
     "search-history": {
-        "Sphinx (Gene)": "https://en.wikipedia.org/wiki/Sphinx_(gene)",
-        "Molecular Biology": "https://en.wikipedia.org/wiki/Molecular_biology",
+        "Gammaherpesvirinae": "https://en.wikipedia.org/wiki/Gammaherpesvirinae",
+        "Virus": "https://en.wikipedia.org/wiki/Viruses",
+        "Pathogen": "https://en.wikipedia.org/wiki/Infectious_agent",
         "Biology": "https://en.wikipedia.org/wiki/Biology",
         "Natural Science": "https://en.wikipedia.org/wiki/Natural_science",
         "Branches Of Science": "https://en.wikipedia.org/wiki/Branches_of_science",
@@ -15,6 +16,9 @@
         "Philosophy": "https://en.wikipedia.org/wiki/Philosophy"
     },
     "repetitive-title-link": {},
-    "chain-length": 12,
-    "crawl-final-state": "The target artice [Philosophy] is visited after 12 articles!"
+    "chain-length": 13,
+    "num_of_new_links": 4,
+    "num_of_repetitive_links": 9,
+    "duration": 7.648082733154297,
+    "crawl-final-state": "The target article [Philosophy] is visited after 13 articles!"
 }
