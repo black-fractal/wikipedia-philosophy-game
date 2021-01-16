@@ -126,15 +126,17 @@ def fetch_first_link( link ):
     for i in soup.find_all( 'p' ):
         for j in i.find_all( 'a', recursive=True ):
             if not j.find_parent('span'):
-                if( is_correct_link( j.get( 'href' ) ) ):
-                    return urljoin(base_url, j.get('href') )
+                link = j.get( 'href' )
+                if( is_correct_link( link ) ):
+                    return urljoin( base_url, link.split(':')[0] )  # for ignoring after ':' [redirecting with code 304]
 
     # if a page with format [x may refer to:] as apeard:
     for i in soup.find_all( 'a', recursive=True ):
         if not i.find_parent('div', attrs={'class' : 'hatnote navigation-not-searchable'} ):
-            if i.get( 'href' ):
-                if( is_correct_link( i.get( 'href' ) ) ):
-                    return urljoin(base_url, i.get('href') )
+            link = i.get( 'href' )
+            if link:
+                if( is_correct_link( link ) ):
+                    return urljoin( base_url, link )
 
 '''-------------------------------------------------------------------
 The function returns True if the input link does not contain ':' which
@@ -142,7 +144,18 @@ is using for Wikipedia Special links and contains 'wiki', because
 all the correct links are in the form of /wiki/...
 -------------------------------------------------------------------'''
 def is_correct_link( link ):
-    return link.find(':')==-1 and link.find('wiki')==1
+    return  link.find('File:'           )==-1 and \
+            link.find('Wikipedia:'      )==-1 and \
+            link.find('Portal:'         )==-1 and \
+            link.find('Special:'        )==-1 and \
+            link.find('Help:'           )==-1 and \
+            link.find('Template_talk:'  )==-1 and \
+            link.find('Template:'       )==-1 and \
+            link.find('Talk:'           )==-1 and \
+            link.find('Category:'       )==-1 and \
+            link.find('Bibcode'         )==-1 and \
+            link.find('Main_Page'       )==-1 and \
+            link.find('wiki'            )==1
 
 '''--------------------------------------------------------------------------
 The function removes all parentheses and all contents. the function
