@@ -63,7 +63,7 @@ def continue_crawl( article_chain, target, threshold ):
     if last_link in search_history:                         # If a duplicate link found! (The crawler has got stuck in a loop!)
         log( f'*** A loop was appeard! the article [{last_title}] is visited again!' )
         REPETITIVE_TITLE_LINK[ last_title ] = last_link
-        CRAWL_STATE = 'A loop was appeared! the article [{}] is visited again!'.format( last_title )
+        CRAWL_STATE = 'A loop appeared! the article [{}] is visited again!'.format( last_title )
         return False
 
     if last_link.lower() == target.lower():                 # If the target link is found!
