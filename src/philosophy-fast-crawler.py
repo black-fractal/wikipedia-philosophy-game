@@ -27,6 +27,9 @@ REPETITIVE_TITLE_LINK       = dict()        # For when a link was seen again
 VERBOSE                     = True          # For logging
 PROGRESS_BAR                = True          # Indicate a progress bar or not
 CRAWL_STATE                 = 'NO-STATE'    # Final state of the crawling
+DURATION                    = 0.0           # Duration of crawling
+NUM_OF_NEW_LINKS            = 0             # Number of new links visited
+NUM_OF_REPETITIVE_LINKS     = 0             # Number of new links exist in historical chain
 BAD_FILES_COUNTER           = 0             # The counter of bad files which have error in reading
 IF_IS_REPITITIVE            = 0             # A boolean counter (0, 1) which will be 1 if a repititive article found
                                             # Colors codes for colorizing the output terminal
@@ -56,6 +59,8 @@ a list of tuples named article_chain.
 ---------------------------------------------------------'''
 def traverse_link( link, target, threshold = 40, sleep_time = 1, files_history=None ):
 
+    global DURATION                                         # Make namespace of DURATION global
+
     article_chain = list( tuple() )                         # Create a `list of tuples` data structure to maintain visited links
     
     log()
@@ -64,13 +69,15 @@ def traverse_link( link, target, threshold = 40, sleep_time = 1, files_history=N
     article_chain.append( (title, link) )                   # Add the initial (title, link) into the article_chain data structure
     log( '{:30s}-->\t\t{:50s}'.format( title, link ) )
     
+    start_time = time()
     while continue_crawl( article_chain, target, threshold, files_history ):
 
         title, link = fetch_title_and_link( fetch_first_link( link ) )  # Fetching the first (title, link) from each article page
         article_chain.append( (title, link) )               # Add the new link and its title into article_chain
         log( '{:30s}-->\t\t{:50s}'.format( title, link ) )
         sleep( sleep_time )                                 # Pause for some moment for avoiding flood Wikipedia with requests.
-        
+    end_time = time()
+    DURATION = end_time - start_time
     log( '*** Crawling is finished!' )
     log()
     return article_chain
@@ -80,9 +87,12 @@ The function specifies how long the search will last.
 -----------------------------------------------------'''
 def continue_crawl( article_chain, target, threshold, files_history ):
     
-    global REPETITIVE_TITLE_LINK                            # Make namespace of REPETITIVE_TITLE_LINK global
     global CRAWL_STATE                                      # Make namespace of CRAWL_STATE global
     global IF_IS_REPITITIVE                                 # Make namespace of IF_IS_REPITITIVE global
+    global REPETITIVE_TITLE_LINK                            # Make namespace of REPETITIVE_TITLE_LINK global
+    global NUM_OF_NEW_LINKS                                 # Make namespace of NUM_OF_NEW_LINKS global
+    
+    NUM_OF_NEW_LINKS += 1
     last_title = article_chain[-1][0]                       # Last visited article title
     last_link = article_chain[-1][1]                        # Last visited article link
     target_title = target.split('/')[-1]
@@ -116,6 +126,7 @@ def continue_crawl( article_chain, target, threshold, files_history ):
 The function returns the title of an article based on the input link.
 ----------------------------------------------------------------------'''
 def fetch_title_and_link( link ):
+    
     link = requests.head( link, allow_redirects=True ).url
     res = requests.get( link )
     soup = BeautifulSoup( res.content, 'html.parser' )
@@ -156,6 +167,7 @@ is using for Wikipedia Special links and contains 'wiki', because
 all the correct links are in the form of /wiki/...
 -------------------------------------------------------------------'''
 def is_correct_link( link ):
+    
     return  link.find('File:'           )==-1 and \
             link.find('Wikipedia:'      )==-1 and \
             link.find('Portal:'         )==-1 and \
@@ -174,6 +186,7 @@ The function removes all parentheses and all contents. the function
 supports nested parentheses and ignores all parentheses in the html tags.
 --------------------------------------------------------------------------'''
 def strip_brackets( text ):
+    
     paren_level = 0
     link_level = 0
     result = ''
@@ -207,7 +220,9 @@ in the files_history data structure.
 ----------------------------------------'''
 def search_in_files_history( link, files_history, article_chain, target_title ):
     
+    global NUM_OF_REPETITIVE_LINKS                          # Make namespace of NUM_OF_REPETITIVE_LINKS global
     global REPETITIVE_TITLE_LINK                            # Make namespace of REPETITIVE_TITLE_LINK global
+    
     file_counter = 0
     for crawl in files_history['search-history']:
         titles = list( crawl.keys() )
@@ -217,6 +232,7 @@ def search_in_files_history( link, files_history, article_chain, target_title ):
             for i, j in zip( titles[ idx+1: ], links[ idx+1: ] ):
                 article_chain.append( (i, j) )
                 log( '{:30s}-->\t\t{:50s}'.format( i, j ), logging.NOTSET )
+                NUM_OF_REPETITIVE_LINKS += 1
             historical_status = files_history[  'crawl-final-state' ][ file_counter ]
             chain_len = len( article_chain )
             REPETITIVE_TITLE_LINK = files_history[ 'repetitive-title-link' ][ file_counter ]
@@ -249,6 +265,7 @@ def generate_crawl_state( historical_status, chain_len, repetitive_title, target
 The function set the initial config for logging.
 -------------------------------------------------'''
 def set_log_config( level = logging.INFO ):
+    
     if level == logging.WARNING:
         timestamp_color = BACKGROUND_BRIGHT_BLUE
         msg_color = BACKGROUND_BRIGHT_RED
@@ -283,12 +300,16 @@ def make_file_path( extension ):
 The function returns a json dump.
 ----------------------------------------------------'''
 def make_json( article_chain, target_link ):
+    
     out = dict()
-    out['target-link']              = target_link
-    out['search-history']           = dict( article_chain )
-    out['repetitive-title-link']    = REPETITIVE_TITLE_LINK
-    out['chain-length']             = len( article_chain ) - IF_IS_REPITITIVE
-    out['crawl-final-state']        = CRAWL_STATE
+    out['target-link'               ] = target_link
+    out['search-history'            ] = dict( article_chain )
+    out['repetitive-title-link'     ] = REPETITIVE_TITLE_LINK
+    out['chain-length'              ] = len( article_chain ) - IF_IS_REPITITIVE
+    out['num_of_new_links'          ] = NUM_OF_NEW_LINKS
+    out['num_of_repetitive_links'   ] = NUM_OF_REPETITIVE_LINKS
+    out['duration'                  ] = DURATION
+    out['crawl-final-state'         ] = CRAWL_STATE
     return json.dumps( out, indent=4, ensure_ascii=False )
 
 '''-----------------------------------------------
@@ -309,6 +330,7 @@ using analysis function.
 def read_history_files( path, history ):
     
     global BAD_FILES_COUNTER
+    
     os.chdir( path )
     total = len( glob.glob( '*.json' ) )
     file_counter = 0
