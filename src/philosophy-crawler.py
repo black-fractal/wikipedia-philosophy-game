@@ -6,7 +6,7 @@ https://github.com/black-fractal/wikipedia-philosophy-game
 Vahid Khodabakhshi,
 vkhodabakhshi@ce.sharif.edu
 Initiated Date: January 2, 2021
-Last modified date: January 9, 2021
+Last modified date: January 16, 2021
 
 '''''''''''''''''''''''''''''''''
 
@@ -19,8 +19,9 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-VERBOSE         = True          # for logging
-CRAWL_STATE     = 'NO-STATE'    # crawl final state
+REPETITIVE_TITLE_LINK   = dict()
+VERBOSE                 = True          # for logging
+CRAWL_STATE             = 'NO-STATE'    # crawl final state
 
 '''---------------------------------------------------------
 The function traverses Wikipedia links and stores the path
@@ -51,6 +52,7 @@ The function specifies how long the search will last.
 -----------------------------------------------------'''
 def continue_crawl( article_chain, target, threshold ):
     
+    global REPETITIVE_TITLE_LINK                            # Make namespace of REPETITIVE_TITLE_LINK global
     global CRAWL_STATE                                      # Make namespace of CRAWL_STATE global
     last_title = article_chain[-1][0]                       # Last visited article title
     last_link = article_chain[-1][1]                        # Last visited article link
@@ -60,7 +62,8 @@ def continue_crawl( article_chain, target, threshold ):
 
     if last_link in search_history:                         # If a duplicate link found! (The crawler has got stuck in a loop!)
         log( f'*** A loop was appeard! the article [{last_title}] is visited again!' )
-        CRAWL_STATE = 'A loop was appeard! the article [{}] is visited again!'.format( last_title )
+        REPETITIVE_TITLE_LINK[ last_title ] = last_link
+        CRAWL_STATE = 'A loop was appeared! the article [{}] is visited again!'.format( last_title )
         return False
 
     if last_link.lower() == target.lower():                 # If the target link is found!
@@ -178,7 +181,7 @@ def write_to_json_file( out_file, json_data ):
 The function returns a string contain date and time
 example: article-chain-[2021-01-03]-[21-50-45].json.
 ----------------------------------------------------'''
-def make_file_name( extension ):
+def make_file_path( extension ):
     return '.\\json\\article-chain-{}.{}'.format( datetime.today().strftime('[%Y-%m-%d]-[%H-%M-%S]'), extension )
 
 '''----------------------------------------------------
@@ -186,9 +189,11 @@ The function returns a json dump.
 ----------------------------------------------------'''
 def make_json( article_chain, target_link ):
     out = dict()
-    out['search-history'] = dict( article_chain )
-    out['target-link'] = target_link
-    out['crawl-final-state'] = CRAWL_STATE
+    out['target-link']              = target_link
+    out['search-history']           = dict( article_chain )
+    out['repetitive-title-link']    = REPETITIVE_TITLE_LINK
+    out['chain-length']             = len( article_chain )
+    out['crawl-final-state']        = CRAWL_STATE
     return json.dumps( out, indent=4, ensure_ascii=False )
 
 '''--------------
@@ -202,7 +207,9 @@ def main():
     
     set_log_config()
     article_chain = traverse_link( random_article_url, target_link, threshold, sleep_time )
-    write_to_json_file( make_file_name('json'), make_json(article_chain, target_link) )
+    out_file_path = make_file_path('json')
+    out_json = make_json(article_chain, target_link )
+    write_to_json_file( out_file_path, out_json )
 
 if __name__ == "__main__":
     main()
