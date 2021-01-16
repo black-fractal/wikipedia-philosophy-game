@@ -22,6 +22,24 @@ from urllib.parse import urljoin
 REPETITIVE_TITLE_LINK   = dict()
 VERBOSE                 = True          # for logging
 CRAWL_STATE             = 'NO-STATE'    # crawl final state
+                                        # Colors unicodes for colorizing the output terminal
+BLACK                       =  '\u001b[30m'
+RED                         =  '\u001b[31m'
+GREEN                       =  '\u001b[32m'
+YELLOW                      =  '\u001b[33m'
+BLUE                        =  '\u001b[34m'
+MAGENTA                     =  '\u001b[35m'
+CYAN                        =  '\u001b[36m'
+WHITE                       =  '\u001b[37m'
+RESET                       =  '\u001b[0m'
+BACKGROUND_BRIGHT_BLACK 	= '\u001b[40;1m'
+BACKGROUND_BRIGHT_RED 		= '\u001b[41;1m'
+BACKGROUND_BRIGHT_GREEN 	= '\u001b[42;1m'
+BACKGROUND_BRIGHT_YELLOW 	= '\u001b[43;1m'
+BACKGROUND_BRIGHT_BLUE 		= '\u001b[44;1m'
+BACKGROUND_BRIGHT_MAGENTA 	= '\u001b[45;1m'
+BACKGROUND_BRIGHT_CYAN		= '\u001b[46;1m'
+BACKGROUND_BRIGHT_WHITE 	= '\u001b[47;1m'
 
 '''---------------------------------------------------------
 The function traverses Wikipedia links and stores the path
@@ -158,7 +176,8 @@ def strip_brackets( text ):
 The function set the initial config for logging.
 -------------------------------------------------'''
 def set_log_config():
-    logging.basicConfig( format='\033[95m[%(asctime)s] \033[93m%(message)s\033[0m', datefmt='%Y-%m-%d %H:%M:%S', level=logging.INFO )
+    out = '{}[{}]{} {}{}{}'.format( MAGENTA, '%(asctime)s', RESET, YELLOW, '%(message)s', RESET )
+    logging.basicConfig( format = out, datefmt='%Y-%m-%d %H:%M:%S', level = logging.INFO )
 
 '''-----------------------------------------------------------
 The function print log if global variable VERBOSE is True.
