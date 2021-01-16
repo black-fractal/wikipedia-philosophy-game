@@ -24,6 +24,7 @@ store data in results data structure
 using analysis function.
 ----------------------------------'''
 def read_files( path, results ):
+    
     os.chdir( path )
     total = len( glob.glob( '*.json' ) )
     c = 1
@@ -76,9 +77,7 @@ Main function.
 def main():
     
     results = { 'found':0, 'looped':0, 'exceed-threshold':0, 'looped-links':[], 'sorted_titles':[], 'search-history':[], 'distance-to-ph':{} }
-    
     read_files( '.\\json\\', results )
-    
     results['looped-links'] = set( results['looped-links'] )
     
     print( results )
