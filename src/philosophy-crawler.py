@@ -82,20 +82,20 @@ def continue_crawl( article_chain, target, threshold ):
     length = len( article_chain )
 
     if last_link in search_history:                         # If a duplicate link found! (The crawler has got stuck in a loop!)
-        log( f'*** A loop was appeard! the article [{last_title}] is visited again!' )
         REPETITIVE_TITLE_LINK[ last_title ] = last_link
         CRAWL_STATE = 'A loop appeared! the article [{}] is visited again!'.format( last_title )
+        log( f'*** {CRAWL_STATE}' )
         IF_IS_REPITITIVE = 1
         return False
 
     if last_link.lower() == target.lower():                 # If the target link is found!
-        log( f'*** The target artice [{target_title}] is visited after {length} articles!' )
-        CRAWL_STATE = 'The target artice [{}] is visited after {} articles!'.format( target_title, length )
+        CRAWL_STATE = 'The target article [{}] is visited after {} articles!'.format( target_title, length )
+        log( f'*** {CRAWL_STATE}' )
         return False
     
     if length >= threshold:                                 # If the number of visited links was more than threshold
-        log( f'*** Unfortunately, the target article was not found after {length} links visited!' )
         CRAWL_STATE = 'Unfortunately, the target article was not found after {} links visited!'.format( length )
+        log( f'*** {CRAWL_STATE}' )
         return False
     
     return True                                             # Going on..
@@ -223,7 +223,7 @@ def make_json( article_chain, target_link ):
 Main function.
 --------------'''
 def main():
-    random_article_url  =   'https://en.wikipedia.org/wiki/Special:Random'
+    random_article_url  =   'https://en.wikipedia.org/wiki/Montagu%27s_harrier'
     target_link         =   'https://en.wikipedia.org/wiki/Philosophy'
     threshold           =    100       # maximum crawling
     sleep_time          =    0.0       # second
