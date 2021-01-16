@@ -34,13 +34,13 @@ def traverse_link( link, target, threshold = 40, sleep_time = 1 ):
     
     log( '*** Crawling is starting..' )
     title, link = fetch_title_and_link( link )              # Fetching the title and (redirected) link using the given link
-    article_chain.append( (title, link) )                   # Add the initial (title, link) into the article_chain data struture
+    article_chain.append( (title, link) )                   # Add the initial (title, link) into the article_chain data structure
     log( '{:30s}-->\t\t{:50s}'.format( title, link ) )
     
     while continue_crawl( article_chain, target, threshold ):
 
         title, link = fetch_title_and_link( fetch_first_link( link ) )  # Fetching the first (title, link) from each article page
-        article_chain.append( (title, link) )               # Add the new link and it's title into article_chain
+        article_chain.append( (title, link) )               # Add the new link and its title into article_chain
         log( '{:30s}-->\t\t{:50s}'.format( title, link ) )
         sleep( sleep_time )                                 # Pause for some moment for avoiding flood Wikipedia with requests.
         
@@ -71,7 +71,7 @@ def continue_crawl( article_chain, target, threshold ):
         CRAWL_STATE = 'The target artice [{}] is visited after {} articles!'.format( target_title, length )
         return False
     
-    if length >= threshold:                                 # If number of visited links was more than threshold
+    if length >= threshold:                                 # If the number of visited links was more than threshold
         log( f'*** Unfortunately, the target artice was not found after {length} links visited!' )
         CRAWL_STATE = 'Unfortunately, the target artice was not found after {} links visited!'.format( length )
         return False
