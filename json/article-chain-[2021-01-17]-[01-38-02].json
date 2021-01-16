@@ -1,0 +1,12 @@
+{
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "search-history": {
+        "The Department Of Mad Scientists": "https://en.wikipedia.org/wiki/The_Department_of_Mad_Scientists",
+        "Michael Belfiore": "https://en.wikipedia.org/wiki/Michael_Belfiore_(author)"
+    },
+    "repetitive-title-link": {
+        "The Department Of Mad Scientists": "https://en.wikipedia.org/wiki/The_Department_of_Mad_Scientists"
+    },
+    "chain-length": 2,
+    "crawl-final-state": "A loop appeared! the article [The Department Of Mad Scientists] is visited again!"
+}
