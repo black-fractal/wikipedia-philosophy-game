@@ -91,7 +91,7 @@ def continue_crawl( article_chain, target, threshold ):
     
     if length >= threshold:                                 # If the number of visited links was more than threshold
         log( f'*** Unfortunately, the target artice was not found after {length} links visited!' )
-        CRAWL_STATE = 'Unfortunately, the target artice was not found after {} links visited!'.format( length )
+        CRAWL_STATE = 'Unfortunately, the target article was not found after {} links visited!'.format( length )
         return False
     
     return True                                             # Going on..
