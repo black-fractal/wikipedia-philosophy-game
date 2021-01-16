@@ -29,7 +29,7 @@ def read_files( path, results ):
     total = len( glob.glob( '*.json' ) )
     c = 1
     for file in glob.glob( '*.json' ):
-        # print( f'file {c} of {total} is reading..' )
+        print( f'file {c} of {total} is reading..' )
         c += 1
         with open( file, 'r', encoding='utf-8' ) as handler:
             data = json.load( handler )
