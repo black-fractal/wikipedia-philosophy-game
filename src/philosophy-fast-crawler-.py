@@ -13,7 +13,8 @@ Last modified date: January 17, 2021
 import glob, os
 import json
 import logging
-from time import sleep
+from time import sleep, time
+from sys import stdout
 from datetime import datetime
 
 import requests
@@ -24,6 +25,7 @@ from urllib.parse import urljoin
 
 REPETITIVE_TITLE_LINK       = dict()        # For when a link was seen again 
 VERBOSE                     = True          # For logging
+PROGRESS_BAR                = True          # Indicate a progress bar or not
 CRAWL_STATE                 = 'NO-STATE'    # Final state of the crawling
 BAD_FILES_COUNTER           = 0             # The counter of bad files which have error in reading
 IF_IS_REPITITIVE            = 0             # A boolean counter (0, 1) which will be 1 if a repititive article found
@@ -45,6 +47,7 @@ BACKGROUND_BRIGHT_BLUE 		= '\u001b[44;1m'
 BACKGROUND_BRIGHT_MAGENTA 	= '\u001b[45;1m'
 BACKGROUND_BRIGHT_CYAN		= '\u001b[46;1m'
 BACKGROUND_BRIGHT_WHITE 	= '\u001b[47;1m'
+MOVE_LEFT                   = '\u001b[1000D'
 
 '''---------------------------------------------------------
 The function traverses Wikipedia links and stores the path
@@ -87,23 +90,24 @@ def continue_crawl( article_chain, target, threshold, files_history ):
     length = len( article_chain )
 
     if last_link in search_history:                         # If a duplicate link found! (The crawler has got stuck in a loop!)
-        log( f'*** A loop was appeard! the article [{last_title}] is visited again!' )
         REPETITIVE_TITLE_LINK[ last_title ] = last_link
         CRAWL_STATE = 'A loop appeared! the article [{}] is visited again!'.format( last_title )
+        log( f'*** {CRAWL_STATE}' )
         IF_IS_REPITITIVE = 1
         return False
 
     if last_link.lower() == target.lower():                 # If the target link is found!
-        log( f'*** The target artice [{target_title}] is visited after {length} articles!' )
-        CRAWL_STATE = 'The target artice [{}] is visited after {} articles!'.format( target_title, length )
+        CRAWL_STATE = 'The target article [{}] is visited after {} articles!'.format( target_title, length )
+        log( f'*** {CRAWL_STATE}' )
         return False
     
     if length >= threshold:                                 # If the number of visited links was more than threshold
-        log( f'*** Unfortunately, the target article was not found after {length} links visited!' )
         CRAWL_STATE = 'Unfortunately, the target article was not found after {} links visited!'.format( length )
+        log( f'*** {CRAWL_STATE}' )
         return False
     
-    if search_in_files_history( last_link, files_history, article_chain ): # If the sequence found in files_history
+    if search_in_files_history( last_link, files_history, article_chain, target_title ): # If the sequence found in files_history
+        log( f'*** {CRAWL_STATE}' )
         return False
     
     return True                                             # Going on..
@@ -134,15 +138,17 @@ def fetch_first_link( link ):
     for i in soup.find_all( 'p' ):
         for j in i.find_all( 'a', recursive=True ):
             if not j.find_parent('span'):
-                if( is_correct_link( j.get( 'href' ) ) ):
-                    return urljoin(base_url, j.get('href') )
+                link = j.get( 'href' )
+                if( is_correct_link( link ) ):
+                    return urljoin( base_url, link.split(':')[0] )  # for ignoring after ':' [redirecting with code 304]
 
     # if a page with format [x may refer to:] as apeard:
     for i in soup.find_all( 'a', recursive=True ):
         if not i.find_parent('div', attrs={'class' : 'hatnote navigation-not-searchable'} ):
-            if i.get( 'href' ):
-                if( is_correct_link( i.get( 'href' ) ) ):
-                    return urljoin(base_url, i.get('href') )
+            link = i.get( 'href' )
+            if link:
+                if( is_correct_link( link ) ):
+                    return urljoin( base_url, link )
 
 '''-------------------------------------------------------------------
 The function returns True if the input link does not contain ':' which
@@ -150,7 +156,18 @@ is using for Wikipedia Special links and contains 'wiki', because
 all the correct links are in the form of /wiki/...
 -------------------------------------------------------------------'''
 def is_correct_link( link ):
-    return link.find(':')==-1 and link.find('wiki')==1
+    return  link.find('File:'           )==-1 and \
+            link.find('Wikipedia:'      )==-1 and \
+            link.find('Portal:'         )==-1 and \
+            link.find('Special:'        )==-1 and \
+            link.find('Help:'           )==-1 and \
+            link.find('Template_talk:'  )==-1 and \
+            link.find('Template:'       )==-1 and \
+            link.find('Talk:'           )==-1 and \
+            link.find('Category:'       )==-1 and \
+            link.find('Bibcode'         )==-1 and \
+            link.find('Main_Page'       )==-1 and \
+            link.find('wiki'            )==1
 
 '''--------------------------------------------------------------------------
 The function removes all parentheses and all contents. the function
@@ -188,25 +205,45 @@ def strip_brackets( text ):
 The function follows the duplicate path
 in the files_history data structure.
 ----------------------------------------'''
-def search_in_files_history( link, files_history, article_chain ):
+def search_in_files_history( link, files_history, article_chain, target_title ):
     
     global REPETITIVE_TITLE_LINK                            # Make namespace of REPETITIVE_TITLE_LINK global
-    global CRAWL_STATE                                      # Make namespace of CRAWL_STATE global
     file_counter = 0
     for crawl in files_history['search-history']:
         titles = list( crawl.keys() )
         links = list( crawl.values() )
-        if link in links:
+        if link in links:                                   # if last link found in files chain
             idx = links.index( link )
             for i, j in zip( titles[ idx+1: ], links[ idx+1: ] ):
                 article_chain.append( (i, j) )
                 log( '{:30s}-->\t\t{:50s}'.format( i, j ), logging.NOTSET )
-            CRAWL_STATE = files_history[  'crawl-final-state' ][ file_counter-BAD_FILES_COUNTER ]
-            REPETITIVE_TITLE_LINK = files_history[ 'repetitive-title-link' ][ file_counter-BAD_FILES_COUNTER ]
-            log( f'*** {CRAWL_STATE}' )
+            historical_status = files_history[  'crawl-final-state' ][ file_counter ]
+            chain_len = len( article_chain )
+            REPETITIVE_TITLE_LINK = files_history[ 'repetitive-title-link' ][ file_counter ]
+            if REPETITIVE_TITLE_LINK.keys():
+                repetitive_title = list( REPETITIVE_TITLE_LINK.keys() )[0]
+            else:
+                repetitive_title = 'None'
+            generate_crawl_state( historical_status, chain_len, repetitive_title, target_title )
             return True
         file_counter += 1
     return False
+
+def generate_crawl_state( historical_status, chain_len, repetitive_title, target_title ):
+    
+    global CRAWL_STATE                                      # Make namespace of CRAWL_STATE global
+    
+    if historical_status.find( 'Unfortunately' )!=-1:
+        # fill out `exceed-threshold`
+        CRAWL_STATE = 'Unfortunately, the target article was not found after {} links visited!'.format( chain_len )
+        
+    elif historical_status.find( 'loop' )!=-1:
+        # fill out `looped`
+       CRAWL_STATE = 'A loop appeared! the article [{}] is visited again!'.format( repetitive_title )
+       
+    else:
+        # fill out `found`
+        CRAWL_STATE = 'The target article [{}] is visited after {} articles!'.format( target_title, chain_len )
 
 '''-------------------------------------------------
 The function set the initial config for logging.
@@ -274,31 +311,60 @@ def read_history_files( path, history ):
     global BAD_FILES_COUNTER
     os.chdir( path )
     total = len( glob.glob( '*.json' ) )
-    c = 0
+    file_counter = 0
+    log( f'{total} files are reading..' )
     for file in glob.glob( '*.json' ):
-        c += 1
+        file_counter += 1
         with open( file, 'r', encoding='utf-8' ) as handler:
             data = json.load( handler )
             try:
+                history['chain-length'          ].append( data['chain-length'           ] )
                 history['target-link'           ].append( data['target-link'            ] )
                 history['search-history'        ].append( data['search-history'         ] )
                 history['repetitive-title-link' ].append( data['repetitive-title-link'  ] )
-                history['chain-length'          ].append( data['chain-length'           ] )
                 history['crawl-final-state'     ].append( data['crawl-final-state'      ] )
             except KeyError:
-                log( f'*** ERROR in reading file {c} of {total}', logging.WARNING )
+                if not PROGRESS_BAR:
+                    log( f'*** ERROR in reading file {file_counter} of {total}', logging.WARNING )
                 BAD_FILES_COUNTER += 1
             else:
-                log(  f'file {c} of {total} was read successfully' )
+                if not PROGRESS_BAR:
+                    log(  f'file {file_counter} of {total} was read successfully' )
+        if PROGRESS_BAR:
+            loading( file_counter, total )
+    print()
+
+'''----------------------------------------
+The function print an ASCII progress bar
+----------------------------------------'''
+def loading( file_counter, total ):
+        usleep( 1000/total )
+        bar_len     = 100
+        width       = (int)( file_counter // (total/bar_len) )
+        progress    = '#' * width
+        left        = ' ' * (bar_len-width)
+        percent     = f'{100*file_counter//total}%'
+        bar         = ' [{}{}] {}'.format( progress, left, percent )
+        stdout.write( MOVE_LEFT + bar )
+        stdout.flush()
+
+'''-------------------------
+The function make a delay
+-------------------------'''
+def usleep( delay ):
+   mdelay = delay / 1000
+   now = time()
+   while now + mdelay > time():
+      pass
 
 '''--------------
 Main function.
 --------------'''
 def main():
     
-    # random_article_url  =   'https://en.wikipedia.org/wiki/Special:Random'        # random!
-    # random_article_url  =   'https://en.wikipedia.org/wiki/Uncertainty'           # short chain!
-    random_article_url  =   'https://en.wikipedia.org/wiki/Montagu%27s_harrier'   # repetitive chain!
+    # random_article_url  =   'https://en.wikipedia.org/wiki/Special:Random'
+    # random_article_url  =   'https://en.wikipedia.org/wiki/Lebanon'
+    random_article_url  =   'https://en.wikipedia.org/wiki/The_Search_for_the_Snow_Leopard'
     target_link         =   'https://en.wikipedia.org/wiki/Philosophy'
     threshold           =    100       # maximum crawling
     sleep_time          =    0.0       # second
