@@ -1,0 +1,20 @@
+{
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "search-history": {
+        "Sphinx (Gene)": "https://en.wikipedia.org/wiki/Sphinx_(gene)",
+        "Molecular Biology": "https://en.wikipedia.org/wiki/Molecular_biology",
+        "Biology": "https://en.wikipedia.org/wiki/Biology",
+        "Natural Science": "https://en.wikipedia.org/wiki/Natural_science",
+        "Branches Of Science": "https://en.wikipedia.org/wiki/Branches_of_science",
+        "Science": "https://en.wikipedia.org/wiki/Science",
+        "Scientific Method": "https://en.wikipedia.org/wiki/Scientific_method",
+        "Empirical Evidence": "https://en.wikipedia.org/wiki/Empirical_evidence",
+        "Information": "https://en.wikipedia.org/wiki/Information",
+        "Uncertainty": "https://en.wikipedia.org/wiki/Uncertainty",
+        "Epistemology": "https://en.wikipedia.org/wiki/Epistemology",
+        "Philosophy": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    "repetitive-title-link": {},
+    "chain-length": 12,
+    "crawl-final-state": "The target artice [Philosophy] is visited after 12 articles!"
+}

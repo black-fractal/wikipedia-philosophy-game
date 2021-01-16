@@ -1,0 +1,18 @@
+{
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "search-history": {
+        "1924 Cleveland Indians Season": "https://en.wikipedia.org/wiki/1924_Cleveland_Indians_season",
+        "Cleveland Indians": "https://en.wikipedia.org/wiki/Cleveland_Indians",
+        "Baseball": "https://en.wikipedia.org/wiki/Baseball",
+        "Bat-And-Ball Games": "https://en.wikipedia.org/wiki/Bat-and-ball_games",
+        "Pitch (Sports Field)": "https://en.wikipedia.org/wiki/Playing_field",
+        "Sport": "https://en.wikipedia.org/wiki/Sport",
+        "Competition": "https://en.wikipedia.org/wiki/Competition",
+        "Goal": "https://en.wikipedia.org/wiki/Goal",
+        "Idea": "https://en.wikipedia.org/wiki/Idea",
+        "Philosophy": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    "repetitive-title-link": {},
+    "chain-length": 10,
+    "crawl-final-state": "The target artice [Philosophy] is visited after 10 articles!"
+}

@@ -1,4 +1,5 @@
 {
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
     "search-history": {
         "Transcension (novel)": "https://en.wikipedia.org/wiki/Special:Random",
         "Lebanese": "https://en.wikipedia.org/wiki/Lebanon",
@@ -16,6 +17,7 @@
         "logical form": "https://en.wikipedia.org/wiki/Logical_form",
         "philosophy": "https://en.wikipedia.org/wiki/Philosophy"
     },
-    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "repetitive-title-link": {},
+    "chain-length": 15,
     "crawl-final-state": "The target artice [Philosophy] is visited after 15 articles!"
 }

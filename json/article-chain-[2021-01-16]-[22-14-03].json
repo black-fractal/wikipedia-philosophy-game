@@ -1,0 +1,13 @@
+{
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "search-history": {
+        "Montagu'S Harrier": "https://en.wikipedia.org/wiki/Montagu%27s_harrier",
+        "Bird Migration": "https://en.wikipedia.org/wiki/Bird_migration",
+        "Flyway": "https://en.wikipedia.org/wiki/Flyway"
+    },
+    "repetitive-title-link": {
+        "Bird Migration": "https://en.wikipedia.org/wiki/Bird_migration"
+    },
+    "chain-length": 3,
+    "crawl-final-state": "A loop appeared! the article [Bird Migration] is visited again!"
+}

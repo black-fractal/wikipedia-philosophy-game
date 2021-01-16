@@ -1,0 +1,30 @@
+{
+    "target-link": "https://en.wikipedia.org/wiki/Philosophy",
+    "search-history": {
+        "Walter Pati": "https://en.wikipedia.org/wiki/Walter_Pati",
+        "American Samoa": "https://en.wikipedia.org/wiki/American_Samoa",
+        "Unincorporated Territories Of The United States": "https://en.wikipedia.org/wiki/Unincorporated_territories_of_the_United_States",
+        "United States": "https://en.wikipedia.org/wiki/United_States",
+        "Country": "https://en.wikipedia.org/wiki/Country",
+        "Territory": "https://en.wikipedia.org/wiki/Territory",
+        "Administrative Division": "https://en.wikipedia.org/wiki/Administrative_division",
+        "Sovereign State": "https://en.wikipedia.org/wiki/Sovereign_state",
+        "Polity": "https://en.wikipedia.org/wiki/Political_entity",
+        "Collective Identity": "https://en.wikipedia.org/wiki/Collective_identity",
+        "Belongingness": "https://en.wikipedia.org/wiki/Belongingness",
+        "Emotion": "https://en.wikipedia.org/wiki/Emotional",
+        "Biology": "https://en.wikipedia.org/wiki/Biological",
+        "Natural Science": "https://en.wikipedia.org/wiki/Natural_science",
+        "Branches Of Science": "https://en.wikipedia.org/wiki/Branches_of_science",
+        "Science": "https://en.wikipedia.org/wiki/Science",
+        "Scientific Method": "https://en.wikipedia.org/wiki/Scientific_method",
+        "Empirical Evidence": "https://en.wikipedia.org/wiki/Empirical_evidence",
+        "Information": "https://en.wikipedia.org/wiki/Information",
+        "Uncertainty": "https://en.wikipedia.org/wiki/Uncertainty",
+        "Epistemology": "https://en.wikipedia.org/wiki/Epistemology",
+        "Philosophy": "https://en.wikipedia.org/wiki/Philosophy"
+    },
+    "repetitive-title-link": {},
+    "chain-length": 22,
+    "crawl-final-state": "The target artice [Philosophy] is visited after 22 articles!"
+}
