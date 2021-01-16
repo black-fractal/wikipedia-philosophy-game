@@ -22,6 +22,7 @@ from urllib.parse import urljoin
 REPETITIVE_TITLE_LINK       = dict()
 VERBOSE                     = True          # for logging
 CRAWL_STATE                 = 'NO-STATE'    # crawl final state
+IF_IS_REPITITIVE            = 0             # A boolean counter (0, 1) which will be 1 if a repititive article found
                                             # Colors unicodes for colorizing the output terminal
 BLACK                       = '\u001b[30m'
 RED                         = '\u001b[31m'
@@ -50,6 +51,7 @@ def traverse_link( link, target, threshold = 40, sleep_time = 1 ):
 
     article_chain = list( tuple() )                         # Create a `list of tuples` data structure to maintain visited links
     
+    log()
     log( '*** Crawling is starting..' )
     title, link = fetch_title_and_link( link )              # Fetching the title and (redirected) link using the given link
     article_chain.append( (title, link) )                   # Add the initial (title, link) into the article_chain data structure
@@ -63,6 +65,7 @@ def traverse_link( link, target, threshold = 40, sleep_time = 1 ):
         sleep( sleep_time )                                 # Pause for some moment for avoiding flood Wikipedia with requests.
         
     log( '*** Crawling is finished!' )
+    log()
     return article_chain
 
 '''-----------------------------------------------------
@@ -72,6 +75,7 @@ def continue_crawl( article_chain, target, threshold ):
     
     global REPETITIVE_TITLE_LINK                            # Make namespace of REPETITIVE_TITLE_LINK global
     global CRAWL_STATE                                      # Make namespace of CRAWL_STATE global
+    global IF_IS_REPITITIVE                                 # Make namespace of IF_IS_REPITITIVE global
     last_title = article_chain[-1][0]                       # Last visited article title
     last_link = article_chain[-1][1]                        # Last visited article link
     target_title = target.split('/')[-1]
@@ -82,6 +86,7 @@ def continue_crawl( article_chain, target, threshold ):
         log( f'*** A loop was appeard! the article [{last_title}] is visited again!' )
         REPETITIVE_TITLE_LINK[ last_title ] = last_link
         CRAWL_STATE = 'A loop appeared! the article [{}] is visited again!'.format( last_title )
+        IF_IS_REPITITIVE = 1
         return False
 
     if last_link.lower() == target.lower():                 # If the target link is found!
@@ -90,7 +95,7 @@ def continue_crawl( article_chain, target, threshold ):
         return False
     
     if length >= threshold:                                 # If the number of visited links was more than threshold
-        log( f'*** Unfortunately, the target artice was not found after {length} links visited!' )
+        log( f'*** Unfortunately, the target article was not found after {length} links visited!' )
         CRAWL_STATE = 'Unfortunately, the target article was not found after {} links visited!'.format( length )
         return False
     
@@ -182,7 +187,7 @@ def set_log_config():
 '''-----------------------------------------------------------
 The function print log if global variable VERBOSE is True.
 -----------------------------------------------------------'''
-def log( msg ):
+def log( msg = '' ):
     if VERBOSE:
         logging.info( msg )
 
@@ -211,7 +216,7 @@ def make_json( article_chain, target_link ):
     out['target-link']              = target_link
     out['search-history']           = dict( article_chain )
     out['repetitive-title-link']    = REPETITIVE_TITLE_LINK
-    out['chain-length']             = len( article_chain )
+    out['chain-length']             = len( article_chain ) - IF_IS_REPITITIVE
     out['crawl-final-state']        = CRAWL_STATE
     return json.dumps( out, indent=4, ensure_ascii=False )
 
