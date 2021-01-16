@@ -225,11 +225,11 @@ The function returns a json dump.
 ----------------------------------------------------'''
 def make_json( article_chain, target_link ):
     out = dict()
-    out['target-link']              = target_link
-    out['search-history']           = dict( article_chain )
-    out['repetitive-title-link']    = REPETITIVE_TITLE_LINK
-    out['chain-length']             = len( article_chain ) - IF_IS_REPITITIVE
-    out['crawl-final-state']        = CRAWL_STATE
+    out['target-link'           ] = target_link
+    out['search-history'        ] = dict( article_chain )
+    out['repetitive-title-link' ] = REPETITIVE_TITLE_LINK
+    out['chain-length'          ] = len( article_chain ) - IF_IS_REPITITIVE
+    out['crawl-final-state'     ] = CRAWL_STATE
     return json.dumps( out, indent=4, ensure_ascii=False )
 
 '''--------------
