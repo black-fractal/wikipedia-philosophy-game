@@ -51,7 +51,6 @@ def traverse_link( link, target, threshold = 40, sleep_time = 1 ):
 
     article_chain = list( tuple() )                         # Create a `list of tuples` data structure to maintain visited links
     
-    log()
     log( '*** Crawling is starting..' )
     title, link = fetch_title_and_link( link )              # Fetching the title and (redirected) link using the given link
     article_chain.append( (title, link) )                   # Add the initial (title, link) into the article_chain data structure
