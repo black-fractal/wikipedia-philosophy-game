@@ -26,7 +26,7 @@ using analysis function.
 def read_files( path, results ):
     
     os.chdir( path )
-    total = len( glob.glob( '*.json' ) ) + 1
+    total = len( glob.glob( '*.json' ) )
     c = 1
     for file in glob.glob( '*.json' ):
         print( f'file {c} of {total} is reading..' )
