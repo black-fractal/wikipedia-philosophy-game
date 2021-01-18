@@ -126,9 +126,10 @@ def fetch_first_link( link ):
     for i in soup.find_all( 'p' ):
         for j in i.find_all( 'a', recursive=True ):
             if not j.find_parent('span'):
-                link = j.get( 'href' )
-                if( is_correct_link( link ) ):
-                    return urljoin( base_url, link.split(':')[0] )  # for ignoring after ':' [redirecting with code 304]
+                if not j.find_parent('table'):  # FIX bug issue #4 (https://github.com/black-fractal/wikipedia-philosophy-game/issues/4)
+                    link = j.get( 'href' )
+                    if( is_correct_link( link ) ):
+                        return urljoin( base_url, link.split(':')[0] )  # for ignoring after ':' [redirecting with code 304]
 
     # if a page with format [x may refer to:] as apeard:
     for i in soup.find_all( 'a', recursive=True ):
