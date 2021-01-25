@@ -20,8 +20,7 @@ from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-# from anytree import Node, RenderTree
-# from anytree.exporter import DotExporter
+
 
 REPETITIVE_TITLE_LINK       = dict()        # For when a link was seen again 
 VERBOSE                     = True          # For logging
