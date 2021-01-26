@@ -82,7 +82,7 @@ def traverse_link( link, target, threshold = 40, sleep_time = 1, files_history=N
     return article_chain
 
 '''-----------------------------------------------------
-The function specifies how long the search will last.
+The function specifies how long the crawling will last.
 -----------------------------------------------------'''
 def continue_crawl( article_chain, target, threshold, files_history ):
     
@@ -95,10 +95,10 @@ def continue_crawl( article_chain, target, threshold, files_history ):
     last_title = article_chain[-1][0]                       # Last visited article title
     last_link = article_chain[-1][1]                        # Last visited article link
     target_title = target.split('/')[-1]
-    search_history = [ x[1] for x in article_chain ][:-1]   # All previous articles' link
+    crawling_history = [ x[1] for x in article_chain ][:-1]   # All previous articles' link
     length = len( article_chain )
 
-    if last_link in search_history:                         # If a duplicate link found! (The crawler has got stuck in a loop!)
+    if last_link in crawling_history:                         # If a duplicate link found! (The crawler has got stuck in a loop!)
         REPETITIVE_TITLE_LINK[ last_title ] = last_link
         CRAWL_STATE = 'A loop appeared! the article [{}] is visited again!'.format( last_title )
         log( f'*** {CRAWL_STATE}' )
@@ -224,7 +224,7 @@ def search_in_files_history( link, files_history, article_chain, target_title ):
     global REPETITIVE_TITLE_LINK                            # Make namespace of REPETITIVE_TITLE_LINK global
     
     file_counter = 0
-    for crawl in files_history['search-history']:
+    for crawl in files_history['crawling-history']:
         titles = list( crawl.keys() )
         links = list( crawl.values() )
         if link in links:                                   # if last link found in files chain
@@ -303,7 +303,7 @@ def make_json( article_chain, target_link ):
     
     out = dict()
     out['target-link'               ] = target_link
-    out['search-history'            ] = dict( article_chain )
+    out['crawling-history'          ] = dict( article_chain )
     out['repetitive-title-link'     ] = REPETITIVE_TITLE_LINK
     out['chain-length'              ] = len( article_chain ) - IF_IS_REPITITIVE
     out['num_of_new_links'          ] = NUM_OF_NEW_LINKS
@@ -342,7 +342,7 @@ def read_history_files( path, history ):
             try:
                 history['chain-length'          ].append( data['chain-length'           ] )
                 history['target-link'           ].append( data['target-link'            ] )
-                history['search-history'        ].append( data['search-history'         ] )
+                history['crawling-history'      ].append( data['crawling-history'         ] )
                 history['repetitive-title-link' ].append( data['repetitive-title-link'  ] )
                 history['crawl-final-state'     ].append( data['crawl-final-state'      ] )
             except KeyError:
@@ -389,7 +389,7 @@ def main():
     threshold           =    100       # maximum crawling
     sleep_time          =    0.0       # second
     
-    files_history = { 'target-link':[], 'search-history':[], 'repetitive-title-link':[], 'chain-length':[], 'crawl-final-state':[] }
+    files_history = { 'target-link':[], 'crawling-history':[], 'repetitive-title-link':[], 'chain-length':[], 'crawl-final-state':[] }
     read_history_files( '.\\json\\', files_history )
     
     article_chain = traverse_link( random_article_url, target_link, threshold, sleep_time, files_history )

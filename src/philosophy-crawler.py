@@ -68,7 +68,7 @@ def traverse_link( link, target, threshold = 40, sleep_time = 1 ):
     return article_chain
 
 '''-----------------------------------------------------
-The function specifies how long the search will last.
+The function specifies how long the crawling will last.
 -----------------------------------------------------'''
 def continue_crawl( article_chain, target, threshold ):
     
@@ -78,10 +78,10 @@ def continue_crawl( article_chain, target, threshold ):
     last_title = article_chain[-1][0]                       # Last visited article title
     last_link = article_chain[-1][1]                        # Last visited article link
     target_title = target.split('/')[-1]
-    search_history = [ x[1] for x in article_chain ][:-1]   # All previous articles' link
+    crawling_history = [ x[1] for x in article_chain ][:-1]   # All previous articles' link
     length = len( article_chain )
 
-    if last_link in search_history:                         # If a duplicate link found! (The crawler has got stuck in a loop!)
+    if last_link in crawling_history:                         # If a duplicate link found! (The crawler has got stuck in a loop!)
         REPETITIVE_TITLE_LINK[ last_title ] = last_link
         CRAWL_STATE = 'A loop appeared! the article [{}] is visited again!'.format( last_title )
         log( f'*** {CRAWL_STATE}' )
@@ -112,7 +112,7 @@ def fetch_title_and_link( link ):
 
 '''----------------------------------------------------------------
 The function fetches the first link on the page of the article
-based on the input link. During the search for the first link,
+based on the input link. During the crawling for the first link,
 links in parentheses or the form of references or out of the
 main paragraphs are not considered.
 ----------------------------------------------------------------'''
@@ -227,7 +227,7 @@ The function returns a json dump.
 def make_json( article_chain, target_link ):
     out = dict()
     out['target-link'           ] = target_link
-    out['search-history'        ] = dict( article_chain )
+    out['crawling-history'      ] = dict( article_chain )
     out['repetitive-title-link' ] = REPETITIVE_TITLE_LINK
     out['chain-length'          ] = len( article_chain ) - IF_IS_REPITITIVE
     out['crawl-final-state'     ] = CRAWL_STATE
