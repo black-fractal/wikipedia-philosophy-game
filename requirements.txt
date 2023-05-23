@@ -9,4 +9,4 @@ beautifulsoup4 == 4.9.3
 
 # D:\git-repository\wikipedia-philosophy-game\src\philosophy-crawler.py: 18
 # D:\git-repository\wikipedia-philosophy-game\src\philosophy-fast-crawler-.py: 20
-requests == 2.24.0
+requests == 2.31.0
